@@ -16,7 +16,7 @@ public class beautifulsoup {
 	public static void WebtoonCrawl(String url, String day) throws Exception{
 
 	  
-	  String webpage = SimpleWeb.getWeb(url); //À¥ÆäÀÌÁö ÀüÃ¼ ÄÚµå °¡Á®¿À±â
+	  String webpage = SimpleWeb.getWeb(url); //ì›¹í˜ì´ì§€ ì „ì²´ ì½”ë“œ ê°€ì ¸ì˜¤ê¸°
       Document doc = Jsoup.parse(webpage);      
       String sql = "insert into LIBINFOSYS.CRAWL_P (crawl_name,crawl_days,crawl_author) values (?, ?, ?)";
       PreparedStatement stmt = db.conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -24,15 +24,15 @@ public class beautifulsoup {
       
       
       
-      Elements rows = doc.select(".daily_img li"); //Á¦¸ñ ÅÂ±×
+      Elements rows = doc.select(".daily_img li"); //ì œëª© íƒœê·¸
       for (Element row : rows) {
-          stmt.setString(1,row.select("dt a").attr("title")); //Á¦¸ñ <a>ÅÂ±× ¾È¿¡ ÀÖ´Â ±ÛÀº ÁÙÀÓ¸»ÀÌ¶ó¼­ attributeÀ¸·Î °¡Á®¿È
+          stmt.setString(1,row.select("dt a").attr("title")); //ì œëª© <a>íƒœê·¸ ì•ˆì— ìˆëŠ” ê¸€ì€ ì¤„ì„ë§ì´ë¼ì„œ attributeìœ¼ë¡œ ê°€ì ¸ì˜´
 	     
 	      
-	      stmt.setString(2,day);//¿äÀÏ
+	      stmt.setString(2,day);//ìš”ì¼
 	      
 	      
-	      /*¸¸È­°¡*/
+	      /*ë§Œí™”ê°€*/
     	  Iterator<Element> iterElem = row.getElementsByTag("dd").iterator();
 	      StringBuilder builder = new StringBuilder();
 	      String aut = builder.append(iterElem.next().text()).toString();
@@ -43,9 +43,10 @@ public class beautifulsoup {
       }
 	}
 	
+	/*Book Crawler*/
 //	public static void BookCrawl(String url) throws Exception{
 //
-//		  String webpage = SimpleWeb.getWeb(url); //À¥ÆäÀÌÁö ÀüÃ¼ ÄÚµå °¡Á®¿À±â
+//		  String webpage = SimpleWeb.getWeb(url); //ì›¹í˜ì´ì§€ ì „ì²´ ì½”ë“œ ê°€ì ¸ì˜¤ê¸°
 //	      Document doc = Jsoup.parse(webpage);      
 //	      String sql = "insert into LIBINFOSYS.BOOK (book_ISBN,book_title,book_author,book_com) values (?, ?, ?, ?)";
 //	      PreparedStatement stmt = db.conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -53,19 +54,19 @@ public class beautifulsoup {
 //	      
 //	      
 //	      
-//	      Elements rows = doc.select(".book_info"); //Ã¥ Á¤º¸ ÀÖ´Â ºÎºĞ
+//	      Elements rows = doc.select(".book_info"); //ì±… ì •ë³´ ìˆëŠ” ë¶€ë¶„
 //	      for (Element row : rows) {
-//	    	  /*Ã¥Á¦¸ñ*/
+//	    	  /*ì±…ì œëª©*/
 //	    	  Iterator<Element> iterElem = row.getElementsByTag("h2").iterator();
 //		      StringBuilder builder = new StringBuilder();
 //		      String tit = builder.append(iterElem.next().text()).toString();
 //	          stmt.setString(1,tit); //
 //		     
 //		      
-//		      stmt.setString(2,day);//¿äÀÏ
+//		      stmt.setString(2,day);//ìš”ì¼
 //		      
 //		      
-//		      /*¸¸È­°¡*/
+//		      /*ë§Œí™”ê°€*/
 //	    	  Iterator<Element> iterElem = row.getElementsByTag("dd").iterator();
 //		      StringBuilder builder = new StringBuilder();
 //		      String aut = builder.append(iterElem.next().text()).toString();
