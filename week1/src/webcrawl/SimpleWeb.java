@@ -6,6 +6,7 @@ import java.net.URL;
 
 /*This class contains a static function which will fetch the webpage
 of the given url and return as a string */
+//Get the whole HTML code in current web page
 public class SimpleWeb{
 	public static String getWeb(String address)throws Exception{
 		String webpage = "";
