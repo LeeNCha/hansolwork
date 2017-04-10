@@ -36,6 +36,7 @@ public class SimpleCrawler{
 	    
     }
     
+    //handmade webtoon crawler	
     public static void crawling(String url,String day)throws Exception{
 
 	    int i=0,j=0,total=0, MAX = 1000;
@@ -43,21 +44,21 @@ public class SimpleCrawler{
     	String tits[] = new String[1000];
     	String auts[] = new String[1000];
     	
-	    String webpage = SimpleWeb.getWeb(url); //À¥ÆäÀÌÁö ÀüÃ¼ ÄÚµå °¡Á®¿À±â
+	    String webpage = SimpleWeb.getWeb(url); //ì›¹í˜ì´ì§€ ì „ì²´ ì½”ë“œ ê°€ì ¸ì˜¤ê¸°
 	    
-	    /* Âü°í
+	    /* ì°¸ê³ 
 	     * http://buglab.tistory.com/74 
 	     * */
 	    
 	    
 	    
-	    end = webpage.indexOf("daily_img");//indexOf("s") :sÀÇ ÁÖ¼Ò ¼ıÀÚ Ãâ·Â. daily_imgÀÇ À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù°í »ı°¢ÇÏ¸é µÊ/
+	    end = webpage.indexOf("daily_img");//indexOf("s") :sì˜ ì£¼ì†Œ ìˆ«ì ì¶œë ¥. daily_imgì˜ ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤ê³  ìƒê°í•˜ë©´ ë¨/
 	    for(i=total;i<MAX; i++, total++){
-	    	//1000¹ø µ¹¸°´Ù
+	    	//1000ë²ˆ ëŒë¦°ë‹¤
 	    	
 	    	
-	    	//title Ã£±â
-	    	dt=webpage.indexOf("<dt>",end);//end ÀÌÈÄÀÇ Ã¹ sÀÇ ÁÖ¼Ò ¼ıÀÚ
+	    	//title ì°¾ê¸°
+	    	dt=webpage.indexOf("<dt>",end);//end ì´í›„ì˜ ì²« sì˜ ì£¼ì†Œ ìˆ«ì
 	        start = webpage.indexOf("title=\"", dt);
 	        
 	        if(dt==-1 || start == -1){
@@ -83,8 +84,8 @@ public class SimpleCrawler{
 	        
 	        
 	        
-	        //author Ã£±â
-	        dt=webpage.indexOf("desc",end);//end ÀÌÈÄÀÇ Ã¹ sÀÇ ÁÖ¼Ò ¼ıÀÚ
+	        //author ì°¾ê¸°
+	        dt=webpage.indexOf("desc",end);//end ì´í›„ì˜ ì²« sì˜ ì£¼ì†Œ ìˆ«ì
 	        start = webpage.indexOf(")\">", dt);
 	        
 	        if(dt==-1 || start == -1){
