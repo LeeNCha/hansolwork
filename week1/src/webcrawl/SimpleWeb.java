@@ -12,6 +12,11 @@ public class SimpleWeb{
 		String webpage = "";
 		String inputLine = "";
 		URL url = new URL(address);
+		
+		/*
+		 * For top efficiency, 
+		 * consider wrapping an InputStreamReader within a BufferedReader
+		 */
 		BufferedReader in = new BufferedReader(
 				new InputStreamReader(url.openStream(),"utf-8"));
 		while ((inputLine = in.readLine()) != null)

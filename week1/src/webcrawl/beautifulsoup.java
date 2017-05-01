@@ -24,17 +24,18 @@ public class beautifulsoup {
 
       Elements rows = doc.select(".daily_img li"); //제목 태그
       for (Element row : rows) {
-          stmt.setString(1,row.select("dt a").attr("title")); //제목 <a>태그 안에 있는 글은 줄임말이라서 attribute으로 가져옴     
-	      
+    	  
+    	  //제목 <a>태그 안에 있는 글은 줄임말이라서 attribute으로 가져옴     
+          stmt.setString(1,row.select("dt a").attr("title")); 
+          
 	      stmt.setString(2,day);//요일      
 	      
 	      /*만화가*/
     	  Iterator<Element> iterElem = row.getElementsByTag("dd").iterator();
 	      StringBuilder builder = new StringBuilder();
 	      String aut = builder.append(iterElem.next().text()).toString();
-          stmt.setString(3,aut); //
+          stmt.setString(3,aut); 
 	      
-          //System.out.println(stmt);
 	      stmt.execute();
       }
 	}
