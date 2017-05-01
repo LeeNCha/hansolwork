@@ -21,16 +21,12 @@ public class beautifulsoup {
       String sql = "insert into LIBINFOSYS.CRAWL_P (crawl_name,crawl_days,crawl_author) values (?, ?, ?)";
       PreparedStatement stmt = db.conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 
-      
-      
-      
+
       Elements rows = doc.select(".daily_img li"); //제목 태그
       for (Element row : rows) {
-          stmt.setString(1,row.select("dt a").attr("title")); //제목 <a>태그 안에 있는 글은 줄임말이라서 attribute으로 가져옴
-	     
+          stmt.setString(1,row.select("dt a").attr("title")); //제목 <a>태그 안에 있는 글은 줄임말이라서 attribute으로 가져옴     
 	      
-	      stmt.setString(2,day);//요일
-	      
+	      stmt.setString(2,day);//요일      
 	      
 	      /*만화가*/
     	  Iterator<Element> iterElem = row.getElementsByTag("dd").iterator();
